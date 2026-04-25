@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M.M.S Restaurant – Pure Veg | Rajkot</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #D4681A;
+    --saffron-light: #F0A050;
+    --saffron-pale: #FDF3E7;
+    --deep-brown: #3B1F0A;
+    --warm-brown: #6B3A1F;
+    --clay: #A0522D;
+    --cream: #FBF5EB;
+    --gold: #C9922A;
+    --gold-light: #E8C060;
+    --leaf: #4A6741;
+    --leaf-light: #7A9E72;
+    --text-dark: #2A1508;
+    --text-mid: #5A3520;
+    --text-muted: #9A7060;
+    --border: rgba(180,100,30,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(212,104,26,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,146,42,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(251,245,235,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    box-shadow: 0 4px 30px rgba(59,31,10,0.10);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--saffron);
+    letter-spacing: 0.03em;
+  }
+
+  .nav-logo span {
+    color: var(--deep-brown);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--saffron);
+    transition: width 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--saffron); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--saffron);
+    color: #fff !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2rem;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.1em;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--warm-brown) !important;
+    transform: translateY(-1px);
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 7rem 2rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 40%, rgba(212,104,26,0.08) 0%, transparent 70%),
+      linear-gradient(160deg, rgba(201,146,42,0.06) 0%, transparent 50%);
+  }
+
+  /* Decorative mandala ring */
+  .hero-ring {
+    position: absolute;
+    width: 600px; height: 600px;
+    border: 1.5px solid rgba(212,104,26,0.12);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 40s linear infinite;
+  }
+
+  .hero-ring-2 {
+    width: 450px; height: 450px;
+    border-color: rgba(201,146,42,0.10);
+    animation-duration: 28s;
+    animation-direction: reverse;
+  }
+
+  @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 780px; }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,146,42,0.12);
+    border: 1px solid rgba(201,146,42,0.3);
+    padding: 0.38rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--deep-brown);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero h1 em {
+    color: var(--saffron);
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-family: 'Lora', serif;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    font-style: italic;
+    color: var(--text-muted);
+    margin: 1rem 0 2.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 2.2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--saffron);
+    color: #fff;
+    padding: 0.85rem 2.2rem;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(212,104,26,0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--warm-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(212,104,26,0.35);
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--saffron);
+    color: var(--saffron);
+    padding: 0.85rem 2.2rem;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: var(--saffron);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .hero-stat .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--saffron);
+  }
+
+  .hero-stat .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--deep-brown);
+    line-height: 1.15;
+  }
+
+  .section-title em {
+    color: var(--saffron);
+    font-style: italic;
+  }
+
+  .section-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    max-width: 560px;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1.2rem 0 0;
+  }
+
+  .ornament-line {
+    flex: 1;
+    max-width: 50px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--gold-light));
+  }
+
+  .ornament-line.right {
+    background: linear-gradient(90deg, var(--gold-light), transparent);
+  }
+
+  .ornament-diamond {
+    width: 7px; height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 6rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, rgba(212,104,26,0.12), rgba(201,146,42,0.08));
+    border-radius: 2px;
+    border: 1.5px solid rgba(212,104,26,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-img-frame::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(212,104,26,0.15);
+    border-radius: 1px;
+  }
+
+  .about-plate-icon {
+    font-size: 7rem;
+    opacity: 0.35;
+  }
+
+  .about-badge-float {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    background: var(--saffron);
+    color: #fff;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 8px 30px rgba(212,104,26,0.35);
+  }
+
+  .about-badge-float .big { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+  .about-badge-float .small { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.88; margin-top: 0.2rem; text-align: center; }
+
+  .about-text p {
+    font-size: 0.97rem;
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-top: 1.2rem;
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .value-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .value-card .icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .value-card .title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--deep-brown); }
+  .value-card .desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+
+  /* ── MENU ── */
+  .menu-section {
+    background: var(--deep-brown);
+    padding: 6rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .menu-section::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 380px; height: 380px;
+    border: 1px solid rgba(212,104,26,0.12);
+    border-radius: 50%;
+  }
+
+  .menu-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+
+  .menu-header { text-align: center; margin-bottom: 3rem; }
+  .menu-header .section-label { color: var(--gold-light); }
+  .menu-header .section-title { color: #fff; }
+  .menu-header .section-subtitle { color: rgba(255,255,255,0.5); margin: 0.5rem auto; }
+
+  .menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    padding: 0.55rem 1.4rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--saffron);
+    border-color: var(--saffron);
+    color: #fff;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .menu-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 4px;
+    padding: 1.4rem 1.6rem;
+    transition: background 0.2s, border-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .menu-card:hover {
+    background: rgba(212,104,26,0.12);
+    border-color: rgba(212,104,26,0.35);
+  }
+
+  .menu-card .left { flex: 1; }
+
+  .menu-card .item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .menu-card .item-desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  .menu-card .item-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .badge-bestseller { background: rgba(201,146,42,0.2); color: var(--gold-light); }
+  .badge-special { background: rgba(74,103,65,0.25); color: #9FD090; }
+  .badge-new { background: rgba(212,104,26,0.25); color: #F0A050; }
+
+  .menu-card .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+
+  .menu-card .price span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── SPECIALS ── */
+  .specials {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .specials-header { margin-bottom: 3rem; }
+
+  .specials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .special-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: #fff;
+  }
+
+  .special-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(59,31,10,0.12);
+  }
+
+  .special-img {
+    height: 180px;
+    background: linear-gradient(135deg, rgba(212,104,26,0.15), rgba(201,146,42,0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+  }
+
+  .special-body { padding: 1.4rem 1.5rem; }
+
+  .special-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--deep-brown);
+  }
+
+  .special-body p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .special-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .special-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--saffron);
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    background: var(--saffron-pale);
+    color: var(--saffron);
+    border-radius: 2rem;
+    border: 1px solid rgba(212,104,26,0.2);
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience {
+    background: linear-gradient(160deg, rgba(212,104,26,0.06) 0%, rgba(201,146,42,0.04) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 3rem;
+  }
+
+  .experience-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .exp-item .icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .exp-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--deep-brown);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── THALI HIGHLIGHT ── */
+  .thali-section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .thali-text .section-subtitle { max-width: 100%; }
+
+  .thali-items {
+    margin-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .thali-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+
+  .thali-dot {
+    width: 8px; height: 8px;
+    background: var(--saffron);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .thali-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .thali-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .thali-card:hover {
+    border-color: var(--saffron);
+    box-shadow: 0 6px 24px rgba(212,104,26,0.10);
+  }
+
+  .thali-card .t-icon { font-size: 2.5rem; margin-bottom: 0.6rem; }
+  .thali-card .t-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--deep-brown); }
+  .thali-card .t-price { font-size: 1rem; font-weight: 700; color: var(--saffron); margin-top: 0.3rem; }
+
+  .thali-card.featured {
+    background: var(--saffron);
+    border-color: var(--saffron);
+    grid-column: 1 / -1;
+  }
+
+  .thali-card.featured .t-name { color: #fff; font-size: 1.1rem; }
+  .thali-card.featured .t-price { color: rgba(255,255,255,0.85); font-size: 1.2rem; }
+
+  /* ── TIMINGS ── */
+  .timings-section {
+    background: var(--deep-brown);
+    padding: 5rem 3rem;
+  }
+
+  .timings-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .timing-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .timing-card .t-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+  .timing-card .t-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 0.4rem; }
+  .timing-card .t-time { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; font-weight: 600; }
+  .timing-card .t-days { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+  /* ── CONTACT & LOCATION ── */
+  .contact-section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info .section-subtitle { max-width: 100%; }
+
+  .contact-details {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: var(--saffron-pale);
+    border: 1px solid rgba(212,104,26,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-row .c-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .contact-row .c-value {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-top: 0.1rem;
+  }
+
+  .contact-row a.c-value {
+    color: var(--saffron);
+    text-decoration: none;
+  }
+
+  .contact-row a.c-value:hover { text-decoration: underline; }
+
+  .map-frame {
+    background: linear-gradient(135deg, rgba(212,104,26,0.08), rgba(59,31,10,0.05));
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    height: 380px;
+  }
+
+  .map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-muted);
+  }
+
+  .map-placeholder .map-pin { font-size: 3rem; }
+  .map-placeholder p { font-size: 0.85rem; text-align: center; line-height: 1.6; }
+
+  .map-cta {
+    display: inline-block;
+    margin-top: 0.8rem;
+    background: var(--saffron);
+    color: #fff;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1A0C04;
+    padding: 3.5rem 3rem 2rem;
+    border-top: 1px solid rgba(212,104,26,0.2);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .footer-brand .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--saffron);
+  }
+
+  .footer-brand .tagline {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .footer-veg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    background: rgba(74,103,65,0.2);
+    border: 1px solid rgba(74,103,65,0.4);
+    color: #9FD090;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+  }
+
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.55rem; }
+  .footer-col ul li a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--saffron-light); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom a { color: var(--saffron-light); text-decoration: none; }
+
+  /* ── FLOATING CTA ── */
+  .float-call {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    background: var(--saffron);
+    color: #fff;
+    border-radius: 3rem;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(212,104,26,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .float-call:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 40px rgba(212,104,26,0.55);
+  }
+
+  .float-call .pulse {
+    width: 10px; height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .about, .thali-section, .contact-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .specials-grid { grid-template-columns: 1fr 1fr; }
+    .experience-inner, .timings-inner { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 1.5rem; }
+    section { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+  }
+
+  @media (max-width: 600px) {
+    .specials-grid { grid-template-columns: 1fr; }
+    .thali-visual { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  /* ── VEG ICON ── */
+  .veg-icon {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 1.5px solid #28a745;
+    border-radius: 2px;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+  .veg-icon::after {
+    content: '';
+    width: 7px; height: 7px;
+    background: #28a745;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING CALL BUTTON -->
+<a href="tel:+919207777773" class="float-call">
+  <div class="pulse"></div>
+  📞 Call to Reserve
+</a>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">M.M.S <span>Restaurant</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#specials">Specials</a></li>
+    <li><a href="#thali">Thali</a></li>
+    <li><a href="#contact">Location</a></li>
+    <li><a href="tel:+919207777773" class="nav-cta">☎ Reserve</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-content fade-in visible">
+    <span class="hero-badge">🌿 100% Pure Vegetarian · Rajkot, Gujarat</span>
+    <h1>Where Every Bite<br>Tells a <em>Story</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Authentic Gujarati flavours crafted with love, served with warmth — right in the heart of Rajkot.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Explore Menu</a>
+      <a href="#contact" class="btn-outline">Find Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">10+</div>
+        <div class="label">Years of Legacy</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">50+</div>
+        <div class="label">Menu Items</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">4.5★</div>
+        <div class="label">Google Rating</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">100%</div>
+        <div class="label">Pure Veg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div class="about-visual fade-in">
+      <div class="about-img-frame">
+        <div class="about-plate-icon">🍽️</div>
+      </div>
+      <div class="about-badge-float">
+        <div class="big">★ 4.5</div>
+        <div class="small">Google<br>Reviews</div>
+      </div>
+    </div>
+    <div class="about-text fade-in">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">A Taste of <em>Gujarat</em>, Served with Heart</h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p>M.M.S Restaurant has been a cherished part of Rajkot's dining culture for over a decade. Born from a deep love of Gujarati culinary tradition, we serve pure vegetarian food that carries the warmth of home — every dish made fresh, every day.</p>
+      <p>Our kitchen is dedicated to authentic recipes passed through generations — from fragrant dal-bati to crispy farsan, from sweet aamras to buttery rotis — all prepared without compromise in quality or taste.</p>
+      <p>At M.M.S, food is not just a meal. It's a celebration of Gujarat's rich heritage, shared across every table.</p>
+      <div class="about-values">
+        <div class="value-card">
+          <div class="icon">🌿</div>
+          <div class="title">Pure Vegetarian</div>
+          <div class="desc">Entirely veg kitchen — no cross-contamination, ever.</div>
+        </div>
+        <div class="value-card">
+          <div class="icon">🧑‍🍳</div>
+          <div class="title">Fresh Daily</div>
+          <div class="desc">Every dish prepared fresh from scratch each morning.</div>
+        </div>
+        <div class="value-card">
+          <div class="icon">🫶</div>
+          <div class="title">Family Owned</div>
+          <div class="desc">Run with personal care, hospitality & warmth.</div>
+        </div>
+        <div class="value-card">
+          <div class="icon">💰</div>
+          <div class="title">Value for Money</div>
+          <div class="desc">Generous portions at honest, pocket-friendly prices.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience">
+  <div class="experience-inner">
+    <div class="exp-item fade-in">
+      <div class="icon">🏡</div>
+      <h3>Homely Ambiance</h3>
+      <p>A warm, comfortable dining space that feels like eating at a Gujarati family home — relaxed, joyful, and welcoming.</p>
+    </div>
+    <div class="exp-item fade-in">
+      <div class="icon">🌾</div>
+      <h3>Seasonal Ingredients</h3>
+      <p>We source fresh, locally grown produce daily — ensuring every meal bursts with natural flavour and nutrition.</p>
+    </div>
+    <div class="exp-item fade-in">
+      <div class="icon">🤝</div>
+      <h3>Warm Service</h3>
+      <p>Our staff treats every guest like family — attentive, friendly, and always ready to make your visit memorable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header fade-in">
+      <span class="section-label">Our Menu</span>
+      <h2 class="section-title" style="color:#fff;">Traditional <em style="color:var(--saffron-light)">Gujarati</em> Flavours</h2>
+      <p class="section-subtitle">Every dish is a celebration of age-old recipes, fresh ingredients, and heartfelt cooking.</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="filterMenu('all')">All Items</button>
+      <button class="tab-btn" onclick="filterMenu('farsan')">Farsan & Starters</button>
+      <button class="tab-btn" onclick="filterMenu('main')">Main Course</button>
+      <button class="tab-btn" onclick="filterMenu('thali')">Thali</button>
+      <button class="tab-btn" onclick="filterMenu('sweet')">Sweets & Desserts</button>
+      <button class="tab-btn" onclick="filterMenu('drinks')">Beverages</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALS -->
+<section id="specials">
+  <div class="specials">
+    <div class="specials-header fade-in">
+      <span class="section-label">Chef's Recommendations</span>
+      <h2 class="section-title">Must-Try <em>Specialities</em></h2>
+      <p class="section-subtitle">Signature dishes that keep our guests coming back for more.</p>
+    </div>
+    <div class="specials-grid">
+      <div class="special-card fade-in">
+        <div class="special-img">🥘</div>
+        <div class="special-body">
+          <h3>Gujarati Thali</h3>
+          <p>The ultimate feast — dal, sabji, kadhi, roti, rice, papad, chutney, achaar & a seasonal sweet. Unlimited refills.</p>
+          <div class="special-footer">
+            <div class="special-price">₹180</div>
+            <span class="tag">Unlimited</span>
+          </div>
+        </div>
+      </div>
+      <div class="special-card fade-in">
+        <div class="special-img">🧆</div>
+        <div class="special-body">
+          <h3>Khandvi</h3>
+          <p>Silky soft gram flour rolls tempered with mustard seeds, curry leaves and fresh coconut — a Gujarati classic.</p>
+          <div class="special-footer">
+            <div class="special-price">₹80</div>
+            <span class="tag">Bestseller</span>
+          </div>
+        </div>
+      </div>
+      <div class="special-card fade-in">
+        <div class="special-img">🍯</div>
+        <div class="special-body">
+          <h3>Aamras Puri</h3>
+          <p>Seasonal Alphonso mango pulp, velvety smooth, served hot with crispy deep-fried puris. A summer delight.</p>
+          <div class="special-footer">
+            <div class="special-price">₹120</div>
+            <span class="tag">Seasonal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THALI SECTION -->
+<section id="thali">
+  <div class="thali-section">
+    <div class="thali-text fade-in">
+      <span class="section-label">Signature Offering</span>
+      <h2 class="section-title">The M.M.S <em>Thali</em></h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p class="section-subtitle">A complete, balanced Gujarati meal that changes daily based on the season and freshest available produce.</p>
+      <div class="thali-items">
+        <div class="thali-item"><span class="thali-dot"></span>Fresh Rotli / Bajri Rotla / Phulka</div>
+        <div class="thali-item"><span class="thali-dot"></span>Seasonal Shaak (Vegetable curry)</div>
+        <div class="thali-item"><span class="thali-dot"></span>Dal / Kadhi</div>
+        <div class="thali-item"><span class="thali-dot"></span>Steamed Rice / Khichdi</div>
+        <div class="thali-item"><span class="thali-dot"></span>Papad, Chutney & Achaar</div>
+        <div class="thali-item"><span class="thali-dot"></span>Seasonal Sweet / Meethi Chai</div>
+        <div class="thali-item"><span class="thali-dot"></span>Unlimited refills on request</div>
+      </div>
+    </div>
+    <div class="thali-visual fade-in">
+      <div class="thali-card featured">
+        <div class="t-icon">🥘</div>
+        <div class="t-name">Full Gujarati Thali</div>
+        <div class="t-price">₹180 · Unlimited</div>
+      </div>
+      <div class="thali-card">
+        <div class="t-icon">🍛</div>
+        <div class="t-name">Mini Thali</div>
+        <div class="t-price">₹120</div>
+      </div>
+      <div class="thali-card">
+        <div class="t-icon">👧</div>
+        <div class="t-name">Kids Thali</div>
+        <div class="t-price">₹80</div>
+      </div>
+      <div class="thali-card">
+        <div class="t-icon">🎉</div>
+        <div class="t-name">Jain Thali</div>
+        <div class="t-price">₹180</div>
+      </div>
+      <div class="thali-card">
+        <div class="t-icon">🌟</div>
+        <div class="t-name">Special Thali</div>
+        <div class="t-price">₹240</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMINGS -->
+<section class="timings-section">
+  <div style="max-width:1000px;margin:0 auto;text-align:center;margin-bottom:3rem;">
+    <span class="section-label" style="color:var(--gold-light)">We're Open</span>
+    <h2 class="section-title" style="color:#fff;">Dining <em style="color:var(--saffron-light)">Hours</em></h2>
+  </div>
+  <div class="timings-inner">
+    <div class="timing-card fade-in">
+      <div class="t-icon">☀️</div>
+      <div class="t-label">Breakfast</div>
+      <div class="t-time">7:30 AM – 11:00 AM</div>
+      <div class="t-days">All Days</div>
+    </div>
+    <div class="timing-card fade-in">
+      <div class="t-icon">🌤️</div>
+      <div class="t-label">Lunch</div>
+      <div class="t-time">11:30 AM – 3:30 PM</div>
+      <div class="t-days">All Days</div>
+    </div>
+    <div class="timing-card fade-in">
+      <div class="t-icon">🌙</div>
+      <div class="t-label">Dinner</div>
+      <div class="t-time">7:00 PM – 10:30 PM</div>
+      <div class="t-days">All Days</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & LOCATION -->
+<section id="contact">
+  <div class="contact-section">
+    <div class="contact-info fade-in">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Visit Us in <em>Rajkot</em></h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <p class="section-subtitle">We'd love to have you at our table. Walk in or give us a call to reserve your spot.</p>
+      <div class="contact-details">
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="c-label">Phone / WhatsApp</div>
+            <a href="tel:+919207777773" class="c-value">+91 92077 77773</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="c-label">Location</div>
+            <div class="c-value">Rajkot, Gujarat, India</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <div class="c-label">Hours</div>
+            <div class="c-value">7:30 AM – 10:30 PM · All Days</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🌿</div>
+          <div>
+            <div class="c-label">Cuisine</div>
+            <div class="c-value">Pure Vegetarian · Gujarati & Indian</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="c-label">Google Profile</div>
+            <a href="https://share.google/e4gzIXZVXbf66Ug8u" target="_blank" class="c-value">View on Google Maps ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-frame fade-in">
+      <div class="map-placeholder">
+        <div class="map-pin">📍</div>
+        <p><strong style="color:var(--text-dark)">M.M.S Restaurant</strong><br>Rajkot, Gujarat</p>
+        <a href="https://share.google/e4gzIXZVXbf66Ug8u" target="_blank" class="map-cta">Open in Google Maps ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">M.M.S Restaurant</div>
+        <p class="tagline">Serving authentic Gujarati vegetarian flavours<br>with love, tradition, and warmth — since day one.</p>
+        <div class="footer-veg-badge">
+          <span class="veg-icon"></span> 100% Pure Vegetarian
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#thali">Thali</a></li>
+          <li><a href="#specials">Specials</a></li>
+          <li><a href="#contact">Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919207777773">+91 92077 77773</a></li>
+          <li><a href="https://share.google/e4gzIXZVXbf66Ug8u" target="_blank">Google Maps</a></li>
+          <li><a href="#">Rajkot, Gujarat</a></li>
+          <li><a href="#">7:30 AM – 10:30 PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 M.M.S Restaurant, Rajkot. All rights reserved.</span>
+      <span>Made with ❤️ for Rajkot's finest veg dining</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuItems = [
+    { name: 'Dhokla', desc: 'Steamed fermented chickpea batter, tempered with mustard & curry leaves.', price: '₹60', cat: 'farsan', badge: 'bestseller' },
+    { name: 'Khandvi', desc: 'Thin gram flour rolls with coconut and coriander tempering.', price: '₹80', cat: 'farsan', badge: 'bestseller' },
+    { name: 'Handvo', desc: 'Baked savoury lentil cake with mixed vegetables.', price: '₹70', cat: 'farsan', badge: '' },
+    { name: 'Fafda Jalebi', desc: 'Crispy fried gram flour strips served with fresh jalebi.', price: '₹50', cat: 'farsan', badge: 'special' },
+    { name: 'Muthiya', desc: 'Steamed dumplings of fenugreek leaves and whole wheat flour.', price: '₹55', cat: 'farsan', badge: '' },
+    { name: 'Sev Tameta', desc: 'Tangy tomato gravy topped with crunchy sev. Classic Gujarati.', price: '₹90', cat: 'main', badge: 'bestseller' },
+    { name: 'Undhiyu', desc: 'A slow-cooked winter specialty of mixed root vegetables & fenugreek dumplings.', price: '₹130', cat: 'main', badge: 'special' },
+    { name: 'Dal Tadka', desc: 'Yellow lentils tempered with ghee, jeera, garlic & dried red chillies.', price: '₹80', cat: 'main', badge: '' },
+    { name: 'Kadhi Chawal', desc: 'Yoghurt-based gram flour curry with soft pakoras over steamed rice.', price: '₹90', cat: 'main', badge: 'bestseller' },
+    { name: 'Methi Thepla', desc: 'Soft flatbreads with fresh fenugreek leaves. Served with curd & achaar.', price: '₹60', cat: 'main', badge: '' },
+    { name: 'Gujarati Thali', desc: 'Complete traditional thali — unlimited rotli, dal, sabji, kadhi, rice & sweet.', price: '₹180', cat: 'thali', badge: 'bestseller' },
+    { name: 'Jain Thali', desc: 'No root vegetables — prepared as per Jain dietary guidelines.', price: '₹180', cat: 'thali', badge: 'special' },
+    { name: 'Kids Thali', desc: 'Smaller portions of kid favourites — roti, dal, sabji & kheer.', price: '₹80', cat: 'thali', badge: '' },
+    { name: 'Special Thali', desc: 'Premium thali with extra items — paneer sabji, 2 sweets & papad fry.', price: '₹240', cat: 'thali', badge: 'new' },
+    { name: 'Shrikhand', desc: 'Strained yoghurt sweetened with sugar, flavoured with cardamom & saffron.', price: '₹70', cat: 'sweet', badge: 'bestseller' },
+    { name: 'Aamras', desc: 'Pure Alphonso mango pulp — seasonal. Best enjoyed with hot puris.', price: '₹90', cat: 'sweet', badge: 'special' },
+    { name: 'Basundi', desc: 'Thickened sweetened milk with pistachios, almonds & saffron strands.', price: '₹80', cat: 'sweet', badge: '' },
+    { name: 'Gulab Jamun', desc: 'Soft milk-solid dumplings soaked in rose-flavoured sugar syrup.', price: '₹50', cat: 'sweet', badge: '' },
+    { name: 'Chaas (Buttermilk)', desc: 'Chilled salted buttermilk with cumin, ginger & coriander.', price: '₹30', cat: 'drinks', badge: 'bestseller' },
+    { name: 'Masala Chaas', desc: 'Spiced buttermilk with roasted cumin, black salt & mint.', price: '₹40', cat: 'drinks', badge: '' },
+    { name: 'Fresh Lime Soda', desc: 'Sweet, salted or mixed. Freshly squeezed limes with chilled soda.', price: '₹45', cat: 'drinks', badge: '' },
+    { name: 'Thandai', desc: 'Chilled milk blended with almonds, rose petals, fennel & saffron.', price: '₹60', cat: 'drinks', badge: 'special' },
+  ];
+
+  const badgeMap = {
+    bestseller: '<span class="item-badge badge-bestseller">★ Bestseller</span>',
+    special: '<span class="item-badge badge-special">Chef\'s Special</span>',
+    new: '<span class="item-badge badge-new">New</span>',
+    '': ''
+  };
+
+  function renderMenu(filter) {
+    const grid = document.getElementById('menuGrid');
+    const items = filter === 'all' ? menuItems : menuItems.filter(i => i.cat === filter);
+    grid.innerHTML = items.map(item => `
+      <div class="menu-card">
+        <div class="left">
+          <div class="item-name"><span class="veg-icon"></span> ${item.name}</div>
+          <div class="item-desc">${item.desc}</div>
+          ${badgeMap[item.badge]}
+        </div>
+        <div>
+          <div class="price">${item.price}<br><span>per plate</span></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterMenu(cat) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderMenu(cat);
+  }
+
+  renderMenu('all');
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
